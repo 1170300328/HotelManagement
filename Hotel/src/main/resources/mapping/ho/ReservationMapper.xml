@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.ho.mapper.ReservationMapper">
+
+	<resultMap id="ReservationResultMap" type="Reservation" >
+		<id property="id" column="RESERVATIONID"/>
+		<result property="rid" column="ROOMID"/>
+		<result property="type" column="ROOMTYPE"/>
+		<result property="name" column="GUESTNAME"/>
+		<result property="code" column="DOCUMENTCODE"/>
+		<result property="time" column="ARRIVETIME"/>
+		<result property="eid" column="EMPLOYEEID"/>
+	</resultMap>
+ 
+	<insert id="insert" parameterType="Reservation" keyProperty="id"   keyColumn="RESERVATIONID"  useGeneratedKeys="true">
+	insert into reservation (ROOMID,ROOMTYPE,GUESTNAME,DOCUMENTCODE,ARRIVETIME,EMPLOYEEID) values (#{rid},#{type},#{name},#{code},#{time},#{eid})
+ 	</insert>
+  
+ 	<update id="update">
+ 	update  reservation set ROOMID=#{rid},ROOMTYPE=#{type},GUESTNAME=#{name},DOCUMENTCODE=#{code},ARRIVETIME=#{time},EMPLOYEEID=#{eid} where RESERVATIONID=#{id}
+ 	</update>
+  
+	<delete id="delete">
+ 	delete from reservation  where RESERVATIONID=#{id} 
+ 	</delete>
+  
+ 	<select id="selectByAll"  resultMap="ReservationResultMap">
+ 	select *  from reservation
+ 	</select>
+
+  
+</mapper>

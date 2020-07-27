@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.ho.mapper.CheckinMapper">
+
+	<resultMap id="CheckinResultMap" type="Checkin" >
+		<id property="id" column="CHECKID"/>
+		<result property="rid" column="ROOMID"/>
+		<result property="type" column="ROOMTYPE"/>
+		<result property="name" column="GUESTNAME"/>
+		<result property="code" column="DOCUMENTCODE"/>
+		<result property="price" column="PRICE"/>
+		<result property="atime" column="ARRIVETIME"/>
+		<result property="ltime" column="LEAVETIME"/>
+		<result property="eid" column="EMPLOYEEID"/>
+	</resultMap>
+ 
+	<insert id="insert" parameterType="Reservation" keyProperty="id"   keyColumn="CHECKID"  useGeneratedKeys="true">
+	insert into checkin (ROOMID,ROOMTYPE,GUESTNAME,DOCUMENTCODE,PRICE,ARRIVETIME,LEAVETIME,EMPLOYEEID) values (#{rid},#{type},#{name},#{code},#{price},#{atime},#{ltime},#{eid})
+ 	</insert>
+  
+ 	<update id="update">
+ 	update  checkin set ROOMID=#{rid},ROOMTYPE=#{type},GUESTNAME=#{name},DOCUMENTCODE=#{code},PRICE==#{price},ARRIVETIME=#{atime},LEAVETIME=#{ltime},EMPLOYEEID=#{eid} where CHECKID=#{id}
+ 	</update>
+  
+	<delete id="delete">
+ 	delete from checkin  where CHECKID=#{id} 
+ 	</delete>
+  
+ 	<select id="selectByAll"  resultMap="CheckinResultMap">
+ 	select *  from checkin
+ 	</select>
+
+  
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.ho.mapper.RoomMapper">
+
+	<resultMap id="RoomResultMap" type="Room" >
+		<id property="type" column="TYPE"/>
+		<result property="maxperson" column="MAXPERSON"/>
+	</resultMap>
+ 
+	<insert id="insert" parameterType="Room" keyProperty="type"   keyColumn="TYPE"  useGeneratedKeys="true">
+	insert into room (TYPE,MAXPERSON) values (#{type},#{maxperson})
+ 	</insert>
+  
+ 	<update id="update">
+ 	update  room set MAXPERSON=#{maxperson} where TYPE=#{type}
+ 	</update>
+  
+	<delete id="delete">
+ 	delete from room  where TYPE=#{type} 
+ 	</delete>
+  
+ 	<select id="selectByAll"  resultMap="RoomResultMap">
+ 	select *  from room
+ 	</select>
+
+  
+</mapper>
